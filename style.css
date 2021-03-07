@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.background{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: auto;
+    background: linear-gradient(to right, #9c27b0, #8ecdff);
+}
+
+.logo{
+    font-size: 54;
+    font-family: Georgia;
+    color: white;
+    flex-basis: 20%;
+}
+
+nav{
+    width: 80%;
+    position: sticky;
+    margin: 20px auto;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 20px;
+}
+
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.mainbody{
+    margin: auto;
+    width: 25%;
+    height: auto;
+    background-color: #8ecdff;
+}
+
+.booking{
+    margin: auto;
+    width: 25%;
+    height: 80%;
+}

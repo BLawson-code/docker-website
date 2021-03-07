@@ -1,0 +1,8 @@
+CREATE TABLE bookings (
+Name VARCHAR (30),
+Phone INT (12),
+Email VARCHAR (40),
+Date DATETIME NULL,
+Arrival DATETIME NULL,
+Departure DATETIME NULL, 
+Attendees INT (2) )
