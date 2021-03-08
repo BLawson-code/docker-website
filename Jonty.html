@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>The Local | Jonty Farmer</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<script>
+function send_data(){
+    
+    var name = document.getElementById("name").value;
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
+    var date = document.getElementById("date").value;
+    var arrival = document.getElementById("arrival").value;
+    var departure = document.getElementById("departure").value;
+    var attendees = document.getElementById("attendees").value;
+   
+    var xhr = new XMLHttpRequest();
+    var url = "/insert.php";
+    xhr.open("POST", url);
+    
+
+    xhr.onreadystatechange=function(){
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200){
+            document.getElementById("response").innerHTML=xhr.responseText;
+            console.log(this.responseText);
+        }
+    }
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.send("name="+name+"&phone="+phone+"&email="+email+"&date="+date+"&arrival="+arrival+"&departure="+departure+"&attendees="+attendees);
+}
+</script>
+<body>
+    <div class="background">
+        <nav>
+            <div class="logo">The Local
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="OurPubs.html">Our Pubs</a></li>
+                    <li><a href="Contactus.html">Contact us</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container mt-5">
+            <form action="http://localhost/phpmyadmin/sql.php?db=restaurant_booking&table=bookings&pos=0" method="POST">
+                <input type="text" id="name" placeholder="Name" class="form-control"/> <br>
+                <input type="number" id="phone" placeholder="phone number" class="form-control"/> <br>
+                <input type="email" id="email" placeholder="email address" class="form-control"/> <br>
+                <input type="date" id="date" class="form-control"/> <br>
+                <input type="time" id="arrival" class="form-control"/> <br>
+                <input type="time" id="departure" class="form-control"/> <br>
+                <input type="number" id="attendees" placeholder="attendees" class="form-control"/> <br>
+                <input type="button" value="submit" onclick="send_data()"/>
+                <span id="response">
+                    
+                </span>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+<!--<footer>
+     <script type="text/javascript">
+            function onSubmit() {
+
+                // Get the values of your other fields the same way
+                var name = document.getElementById('name').value,
+                    phone = document.getElementById('phone').value,
+                    email = document.getElementById('email').value,
+                    attendees = document.getElementById('attendees').value;
+
+                //Validate the form before submit
+                var invalidFields = validateFields(name, phone, email, attendees);
+
+                // If there the length of the invalidFields array is a truthy value, it means validation has passed,
+                // try to seed into the SQL database
+                if (!invalidFields.length) {
+
+                    // The json body that's going to be sent in the body of the request consisting of the
+                    // values of the fields
+                    var jsonBody = {
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        attendees: attendees,
+                    };
+
+                    // Attempt to post the field values as a json string to the mySql database
+                    var servername = "http://localhost:3306";
+                    var dbname = "restaurant_booking";
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", encodeURI(servername + "/phpmyadmin/db_structure.php?server=1&db=restaurant_booking"), true);
+                    xhr.onreadystatechange = function(e) {
+                        e.preventDefault();
+                        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                            // This request is successful - do what you want
+
+                        } else {
+                            // This is when it hasn't worked
+
+                        }
+                    }
+                    // This is actually sending the json as a serialized string in the body of the post request
+                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xhr.send(JSON.stringify(jsonBody));
+                } else {
+                    // This is what happens when the validation fails, the var invalidFields will be an array
+                    // containing the name of all of the fields that have failed validation
+                    alert("There following fields have invalid values: " + invalidFields.join(", "));
+                }
+            }
+
+            function validateFields(name, phone, email, attendees) {
+
+                var problemFields = [];
+
+                if (isEmpty(name)) {
+                    problemFields.push("Name");
+                }
+
+                if (isEmpty(phone)) {
+                    problemFields.push("Phone");
+                }
+
+                if (isEmpty(email)) {
+                    problemFields.push("Email");
+                }
+
+                if (isEmpty(attendees)) {
+                    problemFields.push("Attendees");
+                }
+
+                // field validation here will then push the name of the field into the array if it fails
+                // validation. This will then be joined as part of the alert string
+
+                return problemFields;
+            }
+
+            function isEmpty(value) {
+                var trimmedValue = value.trim();
+
+                return !value;
+            }
+
+            function validateEmail(email) {
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
+                return isEmpty(email) || re.test(email);
+            }
+    </script> 
+</footer> -->
+</!DOCTYPE>
